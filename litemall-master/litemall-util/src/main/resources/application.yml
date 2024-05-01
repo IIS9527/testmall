@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: util
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: full

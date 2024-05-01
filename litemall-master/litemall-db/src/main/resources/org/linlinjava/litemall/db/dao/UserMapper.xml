@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.linlinjava.litemall.db.dao.UserMapper">
+
+    <update id="addUserIntegral" parameterType="map">
+        update litemall_user
+        set integral = integral + #{integral,jdbcType=DECIMAL}, update_time = now()
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <update id="reduceUserIntegral" parameterType="map">
+        update litemall_user
+        set integral = integral - #{integral,jdbcType=DECIMAL}, update_time = now()
+        where id = #{id,jdbcType=INTEGER} and integral >= #{integral,jdbcType=DECIMAL}
+    </update>
+</mapper>

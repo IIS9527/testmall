@@ -1,0 +1,155 @@
+Microsoft Windows [版本 10.0.17763.5458]
+(c) 2018 Microsoft Corporation。保留所有权利。
+
+C:\Users\Administrator>java -jar C:\jiaoben\litemall-all-0.1.0-exec.jar
+20:29:05,544 |-INFO in ch.qos.logback.core.joran.spi.ConfigurationWatchList@2f112965 - URL [jar:file:/C:/jiaoben/litemall-all-0.1.0-exec.jar!/BOOT-INF/classes!/logback-spring.xml] is not of type file
+20:29:05,665 |-INFO in ch.qos.logback.classic.joran.action.ContextNameAction - Setting logger context name as [logback]
+20:29:05,668 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+20:29:05,668 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [console]
+20:29:05,681 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+20:29:05,712 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+20:29:05,717 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [file]
+20:29:05,727 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1353070773 - No compression will be used
+20:29:05,729 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1353070773 - Will use the pattern logs/log-%d{yyyy-MM-dd}.log for the active file
+20:29:05,733 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/log-%d{yyyy-MM-dd}.log'.
+20:29:05,733 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+20:29:05,746 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Sun Apr 28 23:49:04 CST 2024
+20:29:05,749 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+20:29:05,753 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[file] - Active log file name: logs/log.log
+20:29:05,753 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[file] - File property is set to [logs/log.log]
+20:29:05,755 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.rolling.RollingFileAppender]
+20:29:05,755 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [error]
+20:29:05,756 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1754894440 - No compression will be used
+20:29:05,756 |-INFO in c.q.l.core.rolling.TimeBasedRollingPolicy@1754894440 - Will use the pattern logs/error-%d{yyyy-MM-dd}.log for the active file
+20:29:05,757 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - The date pattern is 'yyyy-MM-dd' from file name pattern 'logs/error-%d{yyyy-MM-dd}.log'.
+20:29:05,757 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Roll-over at midnight.
+20:29:05,758 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Setting initial period to Sun Apr 28 23:49:04 CST 2024
+20:29:05,759 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+20:29:05,763 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[error] - Active log file name: logs/error.log
+20:29:05,763 |-INFO in ch.qos.logback.core.rolling.RollingFileAppender[error] - File property is set to [logs/error.log]
+20:29:05,764 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to ERROR
+20:29:05,764 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating ERROR level on Logger[ROOT] onto the JUL framework
+20:29:05,765 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [console] to Logger[ROOT]
+20:29:05,766 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [file] to Logger[ROOT]
+20:29:05,766 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [error] to Logger[ROOT]
+20:29:05,767 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.mybatis] to ERROR
+20:29:05,767 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating ERROR level on Logger[org.mybatis] onto the JUL framework
+20:29:05,767 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.springframework] to ERROR
+20:29:05,768 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating ERROR level on Logger[org.springframework] onto the JUL framework
+20:29:05,769 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.linlinjava.litemall.core] to ERROR
+20:29:05,770 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating ERROR level on Logger[org.linlinjava.litemall.core] onto the JUL framework
+20:29:05,770 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.linlinjava.litemall.db] to ERROR
+20:29:05,770 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating ERROR level on Logger[org.linlinjava.litemall.db] onto the JUL framework
+20:29:05,770 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.linlinjava.litemall.admin] to DEBUG
+20:29:05,770 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating DEBUG level on Logger[org.linlinjava.litemall.admin] onto the JUL framework
+20:29:05,771 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.linlinjava.litemall.wx] to DEBUG
+20:29:05,771 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating DEBUG level on Logger[org.linlinjava.litemall.wx] onto the JUL framework
+20:29:05,773 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.linlinjava.litemall] to DEBUG
+20:29:05,773 |-INFO in ch.qos.logback.classic.jul.LevelChangePropagator@1ea9f6af - Propagating DEBUG level on Logger[org.linlinjava.litemall] onto the JUL framework
+20:29:05,773 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+20:29:05,773 |-INFO in org.springframework.boot.logging.logback.SpringBootJoranConfigurator@56620197 - Registering current configuration as safe fallback point
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.1.5.RELEASE)
+
+20:29:05.925 logback [main] INFO  org.linlinjava.litemall.Application - Starting Application v0.1.0 on WIN-4NDIACRELBT with PID 10700 (C:\jiaoben\litemall-all-0.1.0-exec.jar started by Administrator in C:\Users\Administrator)
+20:29:05,928 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Elapsed period: Sun Apr 28 23:49:04 CST 2024
+20:29:05,931 |-INFO in c.q.l.co.rolling.helper.RenameUtil - Renaming file [logs\log.log] to [logs\log-2024-04-28.log]
+20:29:05.932 logback [main] DEBUG org.linlinjava.litemall.Application - Running with Spring Boot v2.1.5.RELEASE, Spring v5.1.7.RELEASE
+20:29:05.933 logback [main] INFO  org.linlinjava.litemall.Application - The following profiles are active: db,core,admin,wx
+sss
+[LitemallOrder [Hash = -769588610, IS_DELETED=false, NOT_DELETED=false, id=36, userId=1, orderSn=20240428677326, orderStatus=201, aftersaleStatus=0, consignee=z, mobile=11111111111, address=北京市市辖区东城区 近两年, message=https://v.douyin.com/iYKGpvAT/, goodsPrice=500.00, freightPrice=0.00, couponPrice=0.00, integralPrice=0.00, grouponPrice=0.00, orderPrice=500.00, actualPrice=500.00, payId=null, payTime=null, shipSn=null, shipChannel=null, shipTime=null, refundAmount=null, refundType=null, refundContent=null, refundTime=null, confirmTime=null, comments=0, endTime=null, addTime=2024-04-28T23:28:59, updateTime=2024-04-28T23:29:02, deleted=false, roomId=7361597376626297610, videoName=周杰伦音乐电台, datetimeBegin=2024-04-28T23:28, duration=1, integral=40, deviceNumber=10]]
+20:29:13.052 logback [main] INFO  org.linlinjava.litemall.Application - Started Application in 8.045 seconds (JVM running for 8.6)
+sssssssssssssssssssssssss7363084478077586213\",\"close_consecutive_chat\":\"$undefined\",\"isOverFollower\":false}},\"statusCode\":0,\"mix\":null,\"series\":null,\"post\":null,\"uid\":\"MS4wLjABAAAATpNX5KX6UVnvIa1laS-QvhEIcugximbVYvPXtbuaqBGRHTcsgMOuLpjBWKDwGUSC\",\"isHideImpInfo\":true,\"isClient\":false,\"osInfo\":{\"os\":\"Mac\",\"version\":\"\",\"isMas\":false},\"isSpider\":false,\"redirectFrom\":\"$undefined\"}]\n"])
+7363084478077586213
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 34340
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+20:29:16.338 logback [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":".saas\-reflow\-room\-anchor\-name"}
+  (Session info: chrome=124.0.6367.92)
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'WIN-4NDIACRELBT', ip: '192.168.22.100', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '21'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 124.0.6367.92, chrome: {chromedriverVersion: 124.0.6367.91 (51df0e5e17a8..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52671}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 4c40efa31716b60c44c2bdc97d9046e6
+*** Element info: {Using=class name, value=saas-reflow-room-anchor-name}
+        at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+        at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+        at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+        at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+        at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+        at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:408)
+        at org.openqa.selenium.By$ByClassName.findElement(By.java:389)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
+        at org.linlinjava.litemall.util.service.DyAddressService.getXiGuaName(DyAddressService.java:368)
+        at org.linlinjava.litemall.admin.job.OrderJob.checkDyOrderStart(OrderJob.java:138)
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+        at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+        at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+        at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+        at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+        at java.base/java.lang.Thread.run(Thread.java:1583)
+20:29:16,340 |-INFO in c.q.l.core.rolling.DefaultTimeBasedFileNamingAndTriggeringPolicy - Elapsed period: Sun Apr 28 23:49:04 CST 2024
+20:29:16,342 |-INFO in c.q.l.co.rolling.helper.RenameUtil - Renaming file [logs\error.log] to [logs\error-2024-04-28.log]
+20:29:16.343 logback [scheduling-1] INFO  o.l.litemall.admin.job.CouponJob - 绯荤粺寮€鍚换鍔℃鏌ヤ紭鎯犲埜鏄惁宸 茬粡杩囨湡
+20:29:16.362 logback [scheduling-1] INFO  o.l.litemall.admin.job.CouponJob - 绯荤粺缁撴潫浠诲姟妫€鏌ヤ紭鎯犲埜鏄惁宸 茬粡杩囨湡
+sss
+[LitemallOrder [Hash = -769588610, IS_DELETED=false, NOT_DELETED=false, id=36, userId=1, orderSn=20240428677326, orderStatus=201, aftersaleStatus=0, consignee=z, mobile=11111111111, address=北京市市辖区东城区 近两年, message=https://v.douyin.com/iYKGpvAT/, goodsPrice=500.00, freightPrice=0.00, couponPrice=0.00, integralPrice=0.00, grouponPrice=0.00, orderPrice=500.00, actualPrice=500.00, payId=null, payTime=null, shipSn=null, shipChannel=null, shipTime=null, refundAmount=null, refundType=null, refundContent=null, refundTime=null, confirmTime=null, comments=0, endTime=null, addTime=2024-04-28T23:28:59, updateTime=2024-04-28T23:29:02, deleted=false, roomId=7361597376626297610, videoName=周杰伦音乐电台, datetimeBegin=2024-04-28T23:28, duration=1, integral=40, deviceNumber=10]]
+sssssssssssssssssssssssss7363084478077586213\",\"close_consecutive_chat\":\"$undefined\",\"isOverFollower\":false}},\"statusCode\":0,\"mix\":null,\"series\":null,\"post\":null,\"uid\":\"MS4wLjABAAAATpNX5KX6UVnvIa1laS-QvhEIcugximbVYvPXtbuaqBGRHTcsgMOuLpjBWKDwGUSC\",\"isHideImpInfo\":true,\"isClient\":false,\"osInfo\":{\"os\":\"Mac\",\"version\":\"\",\"isMas\":false},\"isSpider\":false,\"redirectFrom\":\"$undefined\"}]\n"])
+7363084478077586213
+Starting ChromeDriver 124.0.6367.91 (51df0e5e17a8b0a4f281c1665dbd1b8a0c6b46af-refs/branch-heads/6367@{#984}) on port 26676
+Only local connections are allowed.
+Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+ChromeDriver was started successfully.
+20:30:18.845 logback [scheduling-1] ERROR o.s.s.s.TaskUtils$LoggingErrorHandler - Unexpected error occurred in scheduled task.
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":".saas\-reflow\-room\-anchor\-name"}
+  (Session info: chrome=124.0.6367.92)
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: 'unknown', revision: 'unknown', time: 'unknown'
+System info: host: 'WIN-4NDIACRELBT', ip: '192.168.22.100', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '21'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 124.0.6367.92, chrome: {chromedriverVersion: 124.0.6367.91 (51df0e5e17a8..., userDataDir: C:\Windows\SystemTemp\scope...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:52829}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 91c57bd9d0da4ac44c099daa54da2976
+*** Element info: {Using=class name, value=saas-reflow-room-anchor-name}
+        at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+        at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+        at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+        at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+        at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+        at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+        at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:548)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:322)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElementByClassName(RemoteWebDriver.java:408)
+        at org.openqa.selenium.By$ByClassName.findElement(By.java:389)
+        at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:314)
+        at org.linlinjava.litemall.util.service.DyAddressService.getXiGuaName(DyAddressService.java:368)
+        at org.linlinjava.litemall.admin.job.OrderJob.checkDyOrderStart(OrderJob.java:138)
+        at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+        at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+        at org.springframework.scheduling.support.ScheduledMethodRunnable.run(ScheduledMethodRunnable.java:84)
+        at org.springframework.scheduling.support.DelegatingErrorHandlingRunnable.run(DelegatingErrorHandlingRunnable.java:54)
+        at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:572)
+        at java.base/java.util.concurrent.FutureTask.runAndReset(FutureTask.java:358)
+        at java.base/java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:305)
+        at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+        at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+        at java.base/java.lang.Thread.run(Thread.java:1583)
