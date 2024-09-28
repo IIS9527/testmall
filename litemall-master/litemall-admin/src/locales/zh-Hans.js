@@ -305,8 +305,9 @@ export default {
       user_name: '下单用户',
       add_time: '下单时间',
       order_status: '订单状态',
-      device_number: '当前运行机器',
+      device_number: '机器',
       room_id: '直播间id',
+      person_address: '个人',
       video_name: '昵称',
       order_price: '订单金额',
       actual_price: '实付金额',
@@ -521,7 +522,7 @@ export default {
       specifications: '商品规格',
       products: '商品库存',
       attributes: '商品参数',
-      segmentPrice:"分段积分"
+      segmentPrice: '分段积分'
     },
     table: {
       specification_name: '规格名',
@@ -557,7 +558,7 @@ export default {
       goods_sn: '商品编号',
       name: '商品名称',
       counter_price: '市场售价',
-      is_dy:'是否dy',
+      is_dy: '是否dy',
       is_new: '是否新品',
       is_hot: '是否热卖',
       is_on_sale: '是否在售',
@@ -580,7 +581,7 @@ export default {
       attribute_value: '商品参数值',
       segmentPrice_name: '时间段',
       segmentPrice_value: '价格',
-      segmentIntegral_value: '积分/分钟',
+      segmentIntegral_value: '积分/分钟'
     },
     value: {
       is_dy_true: 'dy',

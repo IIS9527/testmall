@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.db.domain;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -29,7 +30,7 @@ public class LitemallTask {
      *
      * @mbg.generated
      */
-    private String duration;
+    private BigDecimal duration;
 
     /**
      *
@@ -177,7 +178,7 @@ public class LitemallTask {
      *
      * @mbg.generated
      */
-    public String getDuration() {
+    public BigDecimal getDuration() {
         return duration;
     }
 
@@ -189,7 +190,7 @@ public class LitemallTask {
      *
      * @mbg.generated
      */
-    public void setDuration(String duration) {
+    public void setDuration(BigDecimal duration) {
         this.duration = duration;
     }
 
@@ -530,7 +531,7 @@ public class LitemallTask {
     public enum Column {
         id("id", "id", "VARCHAR", false),
         roomAddress("room_address", "roomAddress", "VARCHAR", false),
-        duration("duration", "duration", "VARCHAR", false),
+        duration("duration", "duration", "DECIMAL", false),
         videoName("video_name", "videoName", "VARCHAR", false),
         number("number", "number", "INTEGER", true),
         roomId("room_id", "roomId", "VARCHAR", false),

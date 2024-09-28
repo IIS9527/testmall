@@ -335,7 +335,7 @@ public class LitemallOrder {
      *
      * @mbg.generated
      */
-    private Integer duration;
+    private BigDecimal duration;
 
     /**
      *
@@ -1189,7 +1189,7 @@ public class LitemallOrder {
      *
      * @mbg.generated
      */
-    public Integer getDuration() {
+    public BigDecimal getDuration() {
         return duration;
     }
 
@@ -1201,7 +1201,7 @@ public class LitemallOrder {
      *
      * @mbg.generated
      */
-    public void setDuration(Integer duration) {
+    public void setDuration(BigDecimal duration) {
         this.duration = duration;
     }
 
@@ -1524,7 +1524,7 @@ public class LitemallOrder {
         roomId("room_id", "roomId", "VARCHAR", false),
         videoName("video_name", "videoName", "VARCHAR", false),
         datetimeBegin("datetime_begin", "datetimeBegin", "TIMESTAMP", false),
-        duration("duration", "duration", "INTEGER", false),
+        duration("duration", "duration", "DECIMAL", false),
         integral("integral", "integral", "INTEGER", false),
         deviceNumber("device_number", "deviceNumber", "INTEGER", false);
 

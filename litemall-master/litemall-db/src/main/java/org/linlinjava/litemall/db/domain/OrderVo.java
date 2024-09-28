@@ -53,11 +53,11 @@ public class OrderVo {
         this.integral = integral;
     }
 
-    public Integer getDuration() {
+    public BigDecimal getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(BigDecimal duration) {
         this.duration = duration;
     }
 
@@ -69,7 +69,7 @@ public class OrderVo {
         this.deviceNumber = deviceNumber;
     }
 
-    private Integer duration;
+    private BigDecimal duration;
     private Integer deviceNumber;
     public String getRoomId() {
         return roomId;

@@ -205,7 +205,7 @@ public class WxAddressController extends GetRegionService {
 
 	  	String roomId =	dyAddressService.getRoomIdByPersonAddress(videoAddress);
 
-	  	String videoName = dyAddressService.getNickNameByPersonAddress(videoAddress);
+	  	String videoName = dyAddressService.getXiGuaName(videoAddress);
 
 	  	if (StrUtil.isEmptyIfStr(roomId) && StrUtil.isEmptyIfStr(videoName)){return ResponseUtil.badArgument();}
 

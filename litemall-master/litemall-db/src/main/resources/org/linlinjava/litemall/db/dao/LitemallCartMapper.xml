@@ -21,7 +21,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
-    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="duration" jdbcType="DECIMAL" property="duration" />
     <result column="integral" jdbcType="INTEGER" property="integral" />
   </resultMap>
   <sql id="Example_Where_Clause">

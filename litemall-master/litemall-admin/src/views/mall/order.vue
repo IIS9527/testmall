@@ -44,60 +44,65 @@
 
       <el-table-column align="center" min-width="120" :label="$t('mall_order.table.order_sn')" prop="orderSn" />
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.avatar')" width="80">-->
-<!--        <template slot-scope="scope">-->
-<!--          <el-avatar :src="scope.row.avatar" />-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.avatar')" width="80">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <el-avatar :src="scope.row.avatar" />-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
 
       <el-table-column align="center" :label="$t('mall_order.table.user_name')" prop="userName" />
 
-      <el-table-column align="center" :label="$t('mall_order.table.add_time')" prop="addTime" min-width="100">
+      <el-table-column align="center" :label="$t('mall_order.table.add_time')" prop="addTime" min-width="90">
         <template slot-scope="scope">
-          {{ (scope.row.addTime || '').substring(0, 10) }}
+          {{ scope.row.addTime }}
+        </template>
+      </el-table-column>
+      <el-table-column align="center" :label="购买时长" prop="duration" min-width="30">
+        <template slot-scope="scope">
+          {{ scope.row.duration }}
         </template>
       </el-table-column>
       <el-table-column align="center" :label="$t('mall_order.table.order_status')" prop="orderStatus">
         <template slot-scope="scope">
-          <el-tag :color="orderStatusTagColor(scope.row.orderStatus)" >{{ scope.row.orderStatus | orderStatusFilter }}</el-tag>
+          <el-tag :color="orderStatusTagColor(scope.row.orderStatus)">{{ scope.row.orderStatus | orderStatusFilter }}</el-tag>
         </template>
       </el-table-column>
 
       <el-table-column align="center" :label="$t('mall_order.table.device_number')" prop="deviceNumber">
         <template slot-scope="scope">
-          {{ scope.row.deviceNumber}}
+          {{ scope.row.deviceNumber }}
         </template>
       </el-table-column>
-      <el-table-column align="center" :label="$t('mall_order.table.room_id')" prop="deviceNumber">
+      <el-table-column align="center" :label="$t('mall_order.table.person_address')" prop="message">
         <template slot-scope="scope">
-          {{ scope.row.roomId}}
+          {{ scope.row.message }}
         </template>
       </el-table-column>
 
-      <el-table-column align="center" :label="$t('mall_order.table.video_name')" prop="deviceNumber">
-        <template slot-scope="scope">
-          {{ scope.row.videoName}}
-        </template>
-      </el-table-column>
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.video_name')" prop="deviceNumber">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          {{ scope.row.videoName}}-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
       <el-table-column align="center" :label="$t('mall_order.table.actual_price')" prop="actualPrice">
         <template slot-scope="scope">
           {{ scope.row.actualPrice }}
         </template>
       </el-table-column>
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.pay_time')" prop="payTime" />-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.pay_time')" prop="payTime" />-->
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.consignee')" prop="consignee">-->
-<!--        <template slot-scope="scope">-->
-<!--          <span style="color:red; font-weight:bold;">{{ scope.row.consignee }}</span>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.consignee')" prop="consignee">-->
+      <!--        <template slot-scope="scope">-->
+      <!--          <span style="color:red; font-weight:bold;">{{ scope.row.consignee }}</span>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.mobile')" prop="mobile" min-width="100" />-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.mobile')" prop="mobile" min-width="100" />-->
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.ship_sn')" prop="shipSn" />-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.ship_sn')" prop="shipSn" />-->
 
-<!--      <el-table-column align="center" :label="$t('mall_order.table.ship_channel')" prop="shipChannel" />-->
+      <!--      <el-table-column align="center" :label="$t('mall_order.table.ship_channel')" prop="shipChannel" />-->
 
       <el-table-column align="center" :label="$t('mall_order.table.actions')" width="250" class-name="oper">
         <template slot-scope="scope">
@@ -402,7 +407,7 @@ export default {
   methods: {
     orderStatusTagColor(data) {
       if (data === 201) {
-        return 'pink';
+        return 'pink'
       }
     },
     checkPermission,
@@ -568,8 +573,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['订单ID', '订单编号', '用户ID', '订单状态', '是否删除', '收货人', '收货联系电话', '收货地址']
-        const filterVal = ['id', 'orderSn', 'userId', 'orderStatus', 'isDelete', 'consignee', 'mobile', 'address']
+        const tHeader = ['订单ID', '用户', '订单编号', '订单状态', '下单时间', '数量', '时长', '收货地址', '总价', '商品']
+        const filterVal = ['id', 'userName', 'orderSn', 'orderStatus', 'addTime', 'deviceNumber', 'duration', 'message', 'orderPrice', 'goodsVoList']
         excel.export_json_to_excel2(tHeader, this.list, filterVal, '订单信息')
         this.downloadLoading = false
       })

@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.wx.web;
 
+import cn.hutool.core.date.DateUtil;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -9,6 +10,7 @@ import org.linlinjava.litemall.core.util.JacksonUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
+import org.linlinjava.litemall.util.service.DyTaskService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -48,7 +50,8 @@ public class WxCartController {
     private CouponVerifyService couponVerifyService;
     @Autowired
     private LitemallGoodsDyService litemallGoodsDyService;
-
+    @Autowired
+    private DyTaskService dyTaskService;
     /**
      * 用户购物车信息
      *
@@ -206,6 +209,9 @@ public class WxCartController {
         if(number <= 0){
             return ResponseUtil.badArgument();
         }
+        if (dyTaskService.getDevices()-200<number){
+            return ResponseUtil.fail(500,"设备不足");
+        }
 
         //判断商品是否可以购买
         LitemallGoods goods = goodsService.findById(goodsId);
@@ -215,9 +221,9 @@ public class WxCartController {
         }
         //判断dy商品
         if (goods.getIsDy()){
-            Integer duration = cart.getDuration();
-            LocalDateTime localDateTime = cart.getStartTime();
-            if (duration == null || duration < 1 || localDateTime == null){
+            BigDecimal duration = cart.getDuration();
+            cart.setStartTime(LocalDateTime.now());
+            if (duration == null || duration.compareTo(new BigDecimal(0)) <= 0 ){
                 return ResponseUtil.badArgument();
             }
         }
@@ -229,9 +235,9 @@ public class WxCartController {
         LitemallCart existCart = cartService.queryExist(goodsId, productId, userId);
         if (existCart == null) {
             //取得规格的信息,判断规格库存
-            if (product == null || number > product.getNumber()) {
-                return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
-            }
+//            if (product == null || number > product.getNumber()) {
+//                return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
+//            }
 
             cart.setId(null);
             cart.setGoodsSn(goods.getGoodsSn());
@@ -245,10 +251,9 @@ public class WxCartController {
 
             // dy 计算价格
             if (goods.getIsDy()){
-
                 List<LitemallGoodsDyPrice> litemallGoodsDyPrices = litemallGoodsDyService.queryByGid(goodsId);
                 BigDecimal  price = litemallGoodsDyService.countPrice(litemallGoodsDyPrices, cart.getStartTime(),cart.getDuration());
-                Integer  integral = litemallGoodsDyService.countIntegral(litemallGoodsDyPrices, cart.getStartTime(),cart.getDuration());
+                BigDecimal  integral = litemallGoodsDyService.countIntegral(litemallGoodsDyPrices, cart.getStartTime(),cart.getDuration());
                 cart.setPrice(price);
                 cart.setIntegral(integral);
             }else {
@@ -261,9 +266,9 @@ public class WxCartController {
         } else {
             //取得规格的信息,判断规格库存
             int num = number;
-            if (num > product.getNumber()) {
-                return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
-            }
+//            if (num > product.getNumber()) {
+//                return ResponseUtil.fail(GOODS_NO_STOCK, "库存不足");
+//            }
             existCart.setNumber((short) num);
             if (goods.getIsDy()){
                 List<LitemallGoodsDyPrice> litemallGoodsDyPrices = litemallGoodsDyService.queryByGid(goodsId);
@@ -473,7 +478,8 @@ public class WxCartController {
         // 商品价格
         List<LitemallCart> checkedGoodsList = null;
         if (cartId == null || cartId.equals(0)) {
-            checkedGoodsList = cartService.queryByUidAndChecked(userId);
+//            checkedGoodsList = cartService.queryByUidAndChecked(userId);
+            return ResponseUtil.badArgumentValue();
         } else {
             LitemallCart cart = cartService.findById(userId, cartId);
             if (cart == null) {
@@ -484,12 +490,7 @@ public class WxCartController {
         }
         BigDecimal checkedGoodsPrice = new BigDecimal(0.00);
         for (LitemallCart cart : checkedGoodsList) {
-            //  只有当团购规格商品ID符合才进行团购优惠
-            if (grouponRules != null && grouponRules.getGoodsId().equals(cart.getGoodsId())) {
-                checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(grouponPrice).multiply(new BigDecimal(cart.getNumber())));
-            } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
-            }
         }
 
         // 计算优惠券可用情况
@@ -497,54 +498,14 @@ public class WxCartController {
         Integer tmpCouponId = 0;
         Integer tmpUserCouponId = 0;
         int tmpCouponLength = 0;
-        List<LitemallCouponUser> couponUserList = couponUserService.queryAll(userId);
-        for(LitemallCouponUser couponUser : couponUserList){
-            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponUser.getCouponId(), couponUser.getId(), checkedGoodsPrice, checkedGoodsList);
-            if(coupon == null){
-                continue;
-            }
 
-            tmpCouponLength++;
-            if(tmpCouponPrice.compareTo(coupon.getDiscount()) == -1){
-                tmpCouponPrice = coupon.getDiscount();
-                tmpCouponId = coupon.getId();
-                tmpUserCouponId = couponUser.getId();
-            }
-        }
         // 获取优惠券减免金额，优惠券可用数量
         int availableCouponLength = tmpCouponLength;
         BigDecimal couponPrice = new BigDecimal(0);
-        // 这里存在三种情况
-        // 1. 用户不想使用优惠券，则不处理
-        // 2. 用户想自动使用优惠券，则选择合适优惠券
-        // 3. 用户已选择优惠券，则测试优惠券是否合适
-        if (couponId == null || couponId.equals(-1)){
-            couponId = -1;
-            userCouponId = -1;
-        }
-        else if (couponId.equals(0)) {
-            couponPrice = tmpCouponPrice;
-            couponId = tmpCouponId;
-            userCouponId = tmpUserCouponId;
-        }
-        else {
-            LitemallCoupon coupon = couponVerifyService.checkCoupon(userId, couponId, userCouponId, checkedGoodsPrice, checkedGoodsList);
-            // 用户选择的优惠券有问题，则选择合适优惠券，否则使用用户选择的优惠券
-            if(coupon == null){
-                couponPrice = tmpCouponPrice;
-                couponId = tmpCouponId;
-                userCouponId = tmpUserCouponId;
-            }
-            else {
-                couponPrice = coupon.getDiscount();
-            }
-        }
+
 
         // 根据订单商品总价计算运费，满88则免运费，否则8元；
         BigDecimal freightPrice = new BigDecimal(0.00);
-        if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0) {
-            freightPrice = SystemConfig.getFreight();
-        }
 
         // 可以使用的其他钱，例如用户积分
         BigDecimal integralPrice = new BigDecimal(0.00);
@@ -571,5 +532,13 @@ public class WxCartController {
         data.put("checkedGoodsList", checkedGoodsList);
 
         return ResponseUtil.ok(data);
+    }
+    @GetMapping("devices")
+    public Object devices(@LoginUser Integer userId) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer number = dyTaskService.getDevices();
+        return ResponseUtil.ok(number>500?"充足":number>200?number-200:0);
     }
 }

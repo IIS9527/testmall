@@ -40,7 +40,7 @@
     <result column="room_id" jdbcType="VARCHAR" property="roomId" />
     <result column="video_name" jdbcType="VARCHAR" property="videoName" />
     <result column="datetime_begin" jdbcType="TIMESTAMP" property="datetimeBegin" />
-    <result column="duration" jdbcType="INTEGER" property="duration" />
+    <result column="duration" jdbcType="DECIMAL" property="duration" />
     <result column="integral" jdbcType="INTEGER" property="integral" />
     <result column="device_number" jdbcType="INTEGER" property="deviceNumber" />
   </resultMap>

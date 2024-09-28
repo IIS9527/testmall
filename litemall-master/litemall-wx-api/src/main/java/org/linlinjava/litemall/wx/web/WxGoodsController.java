@@ -1,5 +1,6 @@
 package org.linlinjava.litemall.wx.web;
 
+import cn.hutool.core.date.LocalDateTimeUtil;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -84,6 +87,8 @@ public class WxGoodsController {
 
 	private static ThreadPoolExecutor executorService = new ThreadPoolExecutor(16, 16, 1000, TimeUnit.MILLISECONDS, WORK_QUEUE, HANDLER);
 
+	@Autowired
+	private  LitemallGoodsDyService litemallGoodsDyService;
 	/**
 	 * 商品详情
 	 * <p>
@@ -96,6 +101,9 @@ public class WxGoodsController {
 	 */
 	@GetMapping("detail")
 	public Object detail(@LoginUser Integer userId, @NotNull Integer id) {
+		if (userId == null) {
+			return ResponseUtil.unlogin();
+		}
 		// 商品信息
 		LitemallGoods info = goodsService.findById(id);
 
@@ -189,12 +197,13 @@ public class WxGoodsController {
 
 		//dy产品查询剩余设备
 		Integer deviceNumber = 0;
-
+		BigDecimal integral = new BigDecimal(0);
 		if (info.getIsDy()){
-			deviceNumber =  dyTaskService.getResidualDevices();
-			if (deviceNumber == null ){
-				deviceNumber = 0;
-			}
+//			deviceNumber =  dyTaskService.getDevices();
+
+			List<LitemallGoodsDyPrice> litemallGoodsDyPrices = litemallGoodsDyService.queryByGid(id);
+			  integral = litemallGoodsDyService.countPrice(litemallGoodsDyPrices,LocalDateTime.now(),new BigDecimal(1));
+
 		}
 
 		Map<String, Object> data = new HashMap<>();
@@ -212,7 +221,7 @@ public class WxGoodsController {
 			//SystemConfig.isAutoCreateShareImage()
 			data.put("share", SystemConfig.isAutoCreateShareImage());
             data.put("deviceNumber",deviceNumber);
-
+            data.put("integral",integral);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -280,7 +289,9 @@ public class WxGoodsController {
 		@RequestParam(defaultValue = "10") Integer limit,
 		@Sort(accepts = {"add_time", "retail_price", "name"}) @RequestParam(defaultValue = "add_time") String sort,
 		@Order @RequestParam(defaultValue = "desc") String order) {
-
+		if (userId == null) {
+			return ResponseUtil.unlogin();
+		}
 		//添加到搜索历史
 		if (userId != null && !StringUtils.isEmpty(keyword)) {
 			LitemallSearchHistory searchHistoryVo = new LitemallSearchHistory();

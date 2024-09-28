@@ -71,7 +71,7 @@ public class WxAuthController {
             return ResponseUtil.badArgument();
         }
 
-        List<LitemallUser> userList = userService.queryByUsername(username);
+        List<LitemallUser> userList = userService.queryByUsernameUserLogin(username);
         LitemallUser user = null;
         if (userList.size() > 1) {
             return ResponseUtil.serious();
@@ -88,7 +88,7 @@ public class WxAuthController {
 
         // 更新登录情况
         user.setLastLoginTime(LocalDateTime.now());
-        user.setLastLoginIp(IpUtil.getIpAddr(request));
+        user.setLastLoginIp("192.168.1.1");
         if (userService.updateById(user) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
@@ -553,7 +553,7 @@ public class WxAuthController {
         data.put("avatar", user.getAvatar());
         data.put("gender", user.getGender());
         data.put("mobile", user.getMobile());
-
+        data.put("integral",user.getIntegral());
         return ResponseUtil.ok(data);
     }
 }

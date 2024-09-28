@@ -57,13 +57,8 @@
         <span class="red">-{{ couponPrice * 100| yuan}}</span>
       </van-cell>
 
-      <van-field v-model="message" placeholder="请输入个人主页链接" label="个人主页链接" @blur="dyAddressParse" required>
+      <van-field v-model="message" placeholder="请输入个人主页链接" label="个人主页链接"  required>
       <template slot="icon">{{message.length}}/50</template>
-      </van-field>
-
-      <van-field v-model="roomId"  v-show="showAddressDetail"    placeholder="直播ID" label="直播间ID"  required>
-      </van-field>
-      <van-field v-model="videoName"  v-show="showAddressDetail" placeholder="直播名称" label="直播名称"  required>
       </van-field>
 
 <!--      <van-field v-model="datetimeBegin" placeholder="开始时间" label="开始时间" @click="getDatetimeBegin" required>-->
@@ -196,14 +191,14 @@ export default {
         Toast.fail('请设置直播间链接');
         return;
       }
-      if (this.roomId === null || this.roomId === '') {
-              Toast.fail('请设置直播间id');
-              return;
-      }
-      if (this.videoName === null || this.videoName === '') {
-              Toast.fail('请设置直播间昵称');
-              return;
-      }
+      // if (this.roomId === null || this.roomId === '') {
+      //         Toast.fail('请设置直播间id');
+      //         return;
+      // }
+      // if (this.videoName === null || this.videoName === '') {
+      //         Toast.fail('请设置直播间昵称');
+      //         return;
+      // }
 
 
 
@@ -218,8 +213,8 @@ export default {
         grouponLinkId: 0,
         grouponRulesId: 0,
         message: this.message,
-        roomId: this.roomId,
-        videoName:this.videoName,
+        // roomId: this.roomId,
+        // videoName:this.videoName,
       }).then(res => {
         
         // 下单成功，重置下单参数。

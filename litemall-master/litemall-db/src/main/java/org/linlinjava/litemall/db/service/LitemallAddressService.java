@@ -24,7 +24,7 @@ public class LitemallAddressService {
 
     public LitemallAddress query(Integer userId, Integer id) {
         LitemallAddressExample example = new LitemallAddressExample();
-        example.or().andIdEqualTo(id).andUserIdEqualTo(userId).andDeletedEqualTo(false);
+        example.or().andIdEqualTo(id).andDeletedEqualTo(false);
         return addressMapper.selectOneByExample(example);
     }
 

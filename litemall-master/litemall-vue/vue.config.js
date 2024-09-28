@@ -8,13 +8,13 @@ module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
   productionSourceMap: false,
-
   devServer: {
     //九键输入法的 「mall」= 「6255」
-    port: 6255,
+    port:6255,
     proxy: {
       '/wx': {
-        target: 'http://localhost:8080'
+        target: 'http://localhost:8080',
+        changeOrigin:true
       },
     },
   },
@@ -48,5 +48,5 @@ module.exports = {
           '@import "@/assets/scss/_var.scss";@import "@/assets/scss/_mixin.scss";'
       }
     }
-  }
+  },
 };

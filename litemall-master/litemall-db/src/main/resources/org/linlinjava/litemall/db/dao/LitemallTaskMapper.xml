@@ -8,7 +8,7 @@
     -->
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="room_address" jdbcType="VARCHAR" property="roomAddress" />
-    <result column="duration" jdbcType="VARCHAR" property="duration" />
+    <result column="duration" jdbcType="DECIMAL" property="duration" />
     <result column="video_name" jdbcType="VARCHAR" property="videoName" />
     <result column="number" jdbcType="INTEGER" property="number" />
     <result column="room_id" jdbcType="VARCHAR" property="roomId" />

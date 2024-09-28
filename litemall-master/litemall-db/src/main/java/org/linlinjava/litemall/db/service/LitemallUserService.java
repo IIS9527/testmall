@@ -85,6 +85,12 @@ public class LitemallUserService {
         return litemallUserMapper.selectByExample(example);
     }
 
+    public List<LitemallUser> queryByUsernameUserLogin(String username) {
+        LitemallUserExample example = new LitemallUserExample();
+        example.or().andUsernameEqualTo(username).andStatusEqualTo(new Byte(String.valueOf(0))).andDeletedEqualTo(false);
+        return litemallUserMapper.selectByExample(example);
+    }
+
     public boolean checkByUsername(String username) {
         LitemallUserExample example = new LitemallUserExample();
         example.or().andUsernameEqualTo(username).andDeletedEqualTo(false);

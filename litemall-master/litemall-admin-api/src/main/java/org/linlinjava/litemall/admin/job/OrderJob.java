@@ -112,7 +112,7 @@ public class OrderJob {
      * 检查时间dy开始时间
      * <p>
      * 定时检查订单情况
-     * 每2分钟检查一次
+     * 每1分钟检查一次
      * <p>
      * TODO
      *
@@ -128,20 +128,19 @@ public class OrderJob {
 
             LocalDateTime beginTime = order.getDatetimeBegin();
 
-            if (nowTime.isBefore(beginTime)){ continue; }
+//            if (nowTime.isBefore(beginTime)){ continue; }
 
-            String roomId =  dyAddressService.getRoomIdByPersonAddress(order.getMessage());
+//            String roomId =  dyAddressService.getRoomIdByPersonAddress(order.getMessage());
+//
+//            if (roomId == null){continue;}
 
-            if (roomId == null){continue;}
-
-
-            order.setVideoName(dyAddressService.getXiGuaName(roomId));
-
-            order.setRoomId(roomId);
+//            order.setVideoName(dyAddressService.getXiGuaName(roomId));
+//
+//            order.setRoomId(roomId);
 
 //            发送任务给任务后台
             System.out.println("sss");
-           if (dyTaskService.taskPush(beginTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:00")) ,order.getDuration().toString(),order.getDeviceNumber().toString(),roomId,order.getVideoName(),
+           if (dyTaskService.taskPush(beginTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:00")) ,order.getDuration().toString(),order.getDeviceNumber().toString(),
                    order.getMessage(),order.getIntegral())){
 
                //发送成功标记已发货
@@ -152,18 +151,25 @@ public class OrderJob {
                order.setShipChannel(shipChannel);
                order.setShipTime(nowTime);
 
-               if (orderService.updateWithOptimisticLocker(order) == 0) {
-                   logHelper.logOrderFail("发货失败订单更新失败", "订单编号 " + order.getOrderSn());
 
-               }
 
                //记录
-               logHelper.logOrderSucceed("发货", "订单编号 " + order.getOrderSn());
+//               logHelper.logOrderSucceed("发货", "订单编号 " + order.getOrderSn());
            }
           else {
+
+               order.setRoomId("发布失败"); //更新失败
+
                //更新失败  提醒
-               logHelper.logOrderFail("发货失败 发布任务失败", "订单编号 " + order.getOrderSn());
+//               logHelper.logOrderFail("发货失败 发布任务失败", "订单编号 " + order.getOrderSn());
            }
+
+            if (orderService.updateWithOptimisticLocker(order) == 1) {
+//                logHelper.logOrderFail("订单更新成功", "订单编号 " + order.getOrderSn());
+            }
+            else {
+//                logHelper.logOrderFail("订单更新失败", "订单编号 " + order.getOrderSn());
+            }
 
 
         }

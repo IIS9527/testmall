@@ -153,16 +153,13 @@ export default {
               .then(res => {
                 let data = res.data.data;
                 console.log(res)
-                window.location.replace(
-                    data.mwebUrl +
-                    '&redirect_url=' +
-                    encodeURIComponent(
-                        window.location.origin +
-                        '/#/?orderId=' +
-                        this.orderId +
-                        '&tip=yes'
-                    )
-                );
+
+                this.$router.replace({
+                  name: 'paymentStatus',
+                  params: {
+                    status: 'success'
+                  }
+                });
               })
               .catch(err => {
                 Dialog.alert({ message: err.data.errmsg });

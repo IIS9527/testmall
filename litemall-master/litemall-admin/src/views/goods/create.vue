@@ -17,7 +17,7 @@
         </el-form-item>
         <el-form-item :label="$t('goods_edit.form.min_number')" prop="counterPrice">
           <el-input v-model="goods.minNumber" placeholder="1">
-            <template slot="append"></template>
+            <template slot="append" />
           </el-input>
         </el-form-item>
         <el-form-item :label="$t('goods_edit.form.is_dy')" prop="isNew">
@@ -293,7 +293,7 @@
       </el-dialog>
     </el-card>
 
-    <el-card class="box-card" v-if="goods.isDy">
+    <el-card v-if="goods.isDy" class="box-card">
       <h3>{{ $t('goods_edit.section.segmentPrice') }}</h3>
       <el-button type="primary" @click="handleSegmentPriceShow">{{ $t('app.button.create') }}</el-button>
       <el-table :data="segmentPrices">
@@ -318,8 +318,16 @@
         >
           <el-form-item :label="$t('goods_edit.form.segmentPrice_name')" prop="attribute">
             <el-select v-model="selectedIds" multiple placeholder="请选择时间段">
-              <el-option v-for="segment in segmentNames" :label="segment" :value="segment" :key="segment"></el-option>
+              <el-option v-for="segment in segmentNames" :key="segment" :label="segment" :value="segment" />
             </el-select>
+            <!--            <el-time-select-->
+            <!--              placeholder="起始时间"-->
+            <!--              v-model="startTime"-->
+            <!--              :picker-options="{step: '00:30'}"></el-time-select>-->
+            <!--            <el-time-select-->
+            <!--              placeholder="结束时间"-->
+            <!--              v-model="endTime"-->
+            <!--              :picker-options="{start: '08:30',step: '00:30',minTime: startTime}"></el-time-select>-->
           </el-form-item>
           <el-form-item :label="$t('goods_edit.form.segmentPrice_value')" prop="value">
             <el-input v-model="segmentPriceForm.price" />
@@ -402,17 +410,17 @@ export default {
   data() {
     return {
       selectedIds: [],
-      segmentNames: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
-      segmentPrices:[],
-      segmentPriceForm:{segment:'',price:'',integral:''},
-      segmentPriceVisiable:false,
+      segmentNames: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
+      segmentPrices: [],
+      segmentPriceForm: { segment: '', price: '', integral: '' },
+      segmentPriceVisiable: false,
       uploadPath,
       newKeywordVisible: false,
       newKeyword: '',
       keywords: [],
       categoryList: [],
       brandList: [],
-      goods: { picUrl: '', gallery: [], isHot: false, isNew: true, isOnSale: true,isDy:true, minNumber:'' },
+      goods: { picUrl: '', gallery: [], isHot: false, isNew: true, isOnSale: true, isDy: true, minNumber: '' },
       specVisiable: false,
       specForm: { specification: '', value: '', picUrl: '' },
       multipleSpec: false,
@@ -679,19 +687,19 @@ export default {
       this.segmentPriceVisiable = true
     },
     handleSegmentPriceAdd() {
-      for (let i=0;i<this.selectedIds.length;i++){
-        let form = {
+      for (let i = 0; i < this.selectedIds.length; i++) {
+        const form = {
           segment: this.selectedIds[i],
-          price:this.segmentPriceForm.price,
-          integral:this.segmentPriceForm.integral
+          price: this.segmentPriceForm.price,
+          integral: this.segmentPriceForm.integral
         }
-        this.segmentNames =  this.segmentNames.filter(function(item) {
+        this.segmentNames = this.segmentNames.filter(function(item) {
           return item !== form.segment
-        });
+        })
         // this.segmentPriceForm.segment= this.selectedIds[i];
-        this.segmentPrices.push(form);
+        this.segmentPrices.push(form)
       }
-      this.selectedIds=[]
+      this.selectedIds = []
       this.segmentPriceVisiable = false
     },
     handleAttributeAdd() {

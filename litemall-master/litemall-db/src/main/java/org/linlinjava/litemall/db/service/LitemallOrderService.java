@@ -265,7 +265,7 @@ public class LitemallOrderService {
 
         LitemallOrderExample example = new LitemallOrderExample();
 
-        example.or().andOrderStatusEqualTo(statu).andDeletedEqualTo(false);
+        example.or().andOrderStatusEqualTo(statu).andDeletedEqualTo(false).andRoomIdIsNull();
 
        return litemallOrderMapper.selectByExample(example);
     }

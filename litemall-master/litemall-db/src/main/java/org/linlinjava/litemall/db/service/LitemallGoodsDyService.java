@@ -50,46 +50,63 @@ public class LitemallGoodsDyService {
 
 
 
-    public BigDecimal countPrice(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, Integer duration){
+//    public BigDecimal countPrice(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, Integer duration){
+//        int startHour =  date.getHour();
+////        System.out.println(startHour);
+//        BigDecimal durationPrice = new BigDecimal(0);
+//        for (int i = 0; i < duration; i++) {
+//            int hour = (startHour + i)%25;
+//            if (hour == 0){ hour++;}
+//            for (LitemallGoodsDyPrice goodsDyPrice : litemallGoodsDyPrice) {
+//                if (goodsDyPrice.getSegment().equals(Integer.toString(hour))) {
+//                    durationPrice = durationPrice.add(goodsDyPrice.getPrice());
+//                    break;
+//                }
+//            }
+//        }
+//       return  durationPrice;
+//    }
 
-
-        int startHour =  date.getHour();;
-
-//        System.out.println(startHour);
-
+    public BigDecimal countPrice(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, BigDecimal duration){
+        int startHour =  date.getHour();
         BigDecimal durationPrice = new BigDecimal(0);
-
-        for (int i = 0; i < duration; i++) {
-            int hour = (startHour + i)%24;
-            if (hour == 0){ hour++;}
+        if (startHour == 0) { startHour++;}
             for (LitemallGoodsDyPrice goodsDyPrice : litemallGoodsDyPrice) {
-                if (goodsDyPrice.getSegment().equals(Integer.toString(hour))) {
+                if (goodsDyPrice.getSegment().equals(Integer.toString(startHour))) {
                     durationPrice = durationPrice.add(goodsDyPrice.getPrice());
                     break;
                 }
             }
-        }
-       return  durationPrice;
+        return  durationPrice.multiply(duration);
     }
 
-    public Integer countIntegral(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, Integer duration){
-
-
+//    public BigDecimal countIntegral(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, Integer duration){
+//        int startHour =  date.getHour();
+//        BigDecimal integral = new BigDecimal(0);
+////        Integer integral= 0;
+//        for (int i = 0; i < duration; i++) {
+//            int hour = (startHour + i)%25;
+//            if (hour == 0){ hour++;}
+//            for (LitemallGoodsDyPrice goodsDyPrice : litemallGoodsDyPrice) {
+//                if (goodsDyPrice.getSegment().equals(Integer.toString(hour))) {
+//                    integral = integral.add(goodsDyPrice.getIntegral());
+//                    break;
+//                }
+//            }
+//        }
+//        return integral.divide(BigDecimal.valueOf(duration));
+//    }
+    public BigDecimal countIntegral(List<LitemallGoodsDyPrice>  litemallGoodsDyPrice,LocalDateTime date, BigDecimal duration){
         int startHour =  date.getHour();
-
-        Integer integral= 0;
-
-        for (int i = 0; i < duration; i++) {
-            int hour = (startHour + i)%24;
-            if (hour == 0){ hour++;}
+        BigDecimal integral = new BigDecimal(0);
+            if (startHour == 0){ startHour++;}
             for (LitemallGoodsDyPrice goodsDyPrice : litemallGoodsDyPrice) {
-                if (goodsDyPrice.getSegment().equals(Integer.toString(hour))) {
-                    integral = integral+goodsDyPrice.getIntegral();
+                if (goodsDyPrice.getSegment().equals(Integer.toString(startHour))) {
+                    integral = integral.add(goodsDyPrice.getIntegral());
                     break;
                 }
             }
-        }
-        return integral/duration;
+        return integral;
     }
 
 

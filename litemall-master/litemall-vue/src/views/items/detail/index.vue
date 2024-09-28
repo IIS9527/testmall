@@ -187,6 +187,7 @@ export default {
     initData() {
       goodsDetail({ id: this.itemId }).then(res => {
         this.goods = res.data.data;
+        console.log("sss",res)
         this.skuAdapter();
       });
 
@@ -352,7 +353,7 @@ export default {
         });
 
         sku_list_obj.price = v.price * 100;
-        sku_list_obj.stock_num =  this.goods.info.isDy?this.goods.deviceNumber: v.number;
+        sku_list_obj.stock_num =  this.goods.info.isDy?this.goods.productList[0].number: v.number;
         sku_list.push(sku_list_obj);
       });
 
